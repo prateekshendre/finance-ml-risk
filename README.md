@@ -30,7 +30,8 @@ This repo contains a reproducible workflow from ingestion through model explaina
 ---
 ## 📁 Repository Layout
 
-'''
+```
+
 finance-ml-risk/  
 ├── data/  
 │   ├── examples/                 # sample CSVs  
@@ -65,8 +66,9 @@ finance-ml-risk/
 ├── Dockerfile  
 ├── README.md  
 ├── LICENSE  
-└── .gitignore  
-'''
+└── .gitignore
+
+```
 
 ---
 ## 🖼 Key Outputs
@@ -79,13 +81,17 @@ finance-ml-risk/
 ---
 ## ⚡ How to Run Locally
 1. Clone repo  
+   ```
    git clone https://github.com/your-username/finance-ml-risk.git  
-   cd finance-ml-risk  
+   cd finance-ml-risk
+   ```
 
 2. Create virtual environment  
+   ```
    python -m venv venv  
-   source venv/bin/activate   # on Windows: venv\Scripts\activate  
-
+   source venv/bin/activate   # on Windows: venv\Scripts\activate
+   ```
+   
 3. Install dependencies  
    pip install -r requirements.txt  
 
