@@ -93,24 +93,35 @@ finance-ml-risk/
    ```
    
 3. Install dependencies  
-   pip install -r requirements.txt  
+   ```
+   pip install -r requirements.txt
+   ```
 
 4. Prepare data  
-   python src/ingestion.py --input data/examples/raw.csv --out data/feature_store/clean.parquet  
+   ```
+   python src/ingestion.py --input data/examples/raw.csv --out data/feature_store/clean.parquet
+   ```
 
 5. Train model  
-   python src/train.py --config configs/train.yaml  
+   ```
+   python src/train.py --config configs/train.yaml
+   ```
 
 6. Evaluate & explain  
+   ```
    python src/evaluate.py --model outputs/models/model.pkl --data data/feature_store/clean.parquet  
-   python src/explainability.py --model outputs/models/model.pkl --data data/feature_store/clean.parquet --out outputs/reports/shap_summary.html  
+   python src/explainability.py --model outputs/models/model.pkl --data data/feature_store/clean.parquet --out outputs/reports/shap_summary.html
+   ```
 
 7. Serve model (Docker)  
+   ```
    docker build -t finance-ml-risk .  
-   docker run --rm -p 8080:8080 finance-ml-risk  
+   docker run --rm -p 8080:8080 finance-ml-risk
+   ```
 
 ---
 ## 📌 Example Training Config
+```
 train.yaml  
 seed: 42  
 model:  
@@ -130,7 +141,8 @@ paths:
   outputs: outputs/  
 features:  
   categorical: [sector, region]  
-  numeric: [loan_amount, ltv, dsr]  
+  numeric: [loan_amount, ltv, dsr]
+``` 
 
 ---
 ## 🔮 Next Steps
