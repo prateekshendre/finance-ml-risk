@@ -1,5 +1,5 @@
 # 🤖 Machine Learning for Financial Risk
-End-to-end **credit default and counterparty risk modeling pipeline** with explainability and governance.  
+End-to-end **credit default and counterparty risk modeling pipeline** with machine learning, explainability, and governance.
 This repo contains a reproducible workflow from ingestion through model explainability and a minimal deployment path.  
 
 ---
@@ -9,7 +9,8 @@ This repo contains a reproducible workflow from ingestion through model explaina
 * **Trains** logistic regression, random forest, and gradient boosting models  
 * **Validates** performance with time-based splits and cross-validation  
 * **Explains** model behavior with SHAP for global and local interpretability  
-* **Generates** model cards and validation reports for governance  
+* **Generates** model cards and validation reports for governance
+* **Tracks** experiments and metrics with MLflow for reproducibility
 
 ---
 ## 📂 Data
@@ -107,17 +108,20 @@ finance-ml-risk/
    python src/train.py --config configs/train.yaml
    ```
 
-6. Evaluate & explain  
+6. Evaluate model
    ```
    python src/evaluate.py --model outputs/models/model.pkl --data data/feature_store/clean.parquet  
-   python src/explainability.py --model outputs/models/model.pkl --data data/feature_store/clean.parquet --out outputs/reports/shap_summary.html
    ```
 
-7. Serve model (Docker)  
+7. Generate SHAP explainability report 
+   ```
+   python src/explainability.py --model outputs/models/model.pkl --data data/feature_store/clean.parquet --out outputs/reports/shap_summary.html  
+   ```
+8. Serve model (Docker)  
    ```
    docker build -t finance-ml-risk .  
    docker run --rm -p 8080:8080 finance-ml-risk
-   ```
+   ```    
 
 ---
 ## 📌 Example Training Config
@@ -142,6 +146,9 @@ paths:
 features:  
   categorical: [sector, region]  
   numeric: [loan_amount, ltv, dsr]
+preprocessing:  
+  scale: true  
+  encode_categoricals: onehot
 ``` 
 
 ---
